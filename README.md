@@ -1,0 +1,2 @@
+# CommonMark-viewer_ChromeExtensions
+.mdや.markdownファイルをブラウザで開いた時に、プレビューとコードビューを表示する拡張機能です。
