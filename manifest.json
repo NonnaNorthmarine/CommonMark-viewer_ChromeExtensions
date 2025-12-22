@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "CommonMark Viewer",
+    "version": "1.0",
+    "description": "MarkdownファイルをCommonMark標準で表示し、プレビューとコードを切り替えます。",
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*/*.md",
+                "file://*/*.md",
+                "*://*/*.markdown",
+                "file://*/*.markdown"
+            ],
+            "js": [
+                "markdown-it.min.js",
+                "content.js"
+            ],
+            "css": [
+                "styles.css"
+            ]
+        }
+    ],
+    "permissions": [
+        "activeTab"
+    ]
+}

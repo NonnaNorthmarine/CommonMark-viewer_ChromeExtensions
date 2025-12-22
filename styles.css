@@ -1,0 +1,97 @@
+/* Google Fonts の読み込み */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+/* --- 1. 全体・Code View（元のテキスト）の修正 --- */
+body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    /* Code Viewの文字を強制的に黒に */
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
+}
+
+/* Chromeが生成するpreタグ（ソースコード画面）の調整 */
+pre {
+    white-space: pre-wrap;
+    /* 折り返しを有効に */
+    word-wrap: break-word;
+    padding: 50px !important;
+    margin: 0 !important;
+    color: #000000 !important;
+    /* 確実に黒くする */
+    font-family: 'Consolas', 'Monaco', monospace;
+    /* コードは等幅フォント */
+    background-color: #ffffff !important;
+}
+
+/* --- 2. プレビュー画面のデザイン --- */
+#md-preview-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 60px;
+    background-color: #ffffff;
+    color: #333333;
+    line-height: 1.7;
+    font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
+    /* プレビュー時も背景を白く保つ */
+    min-height: 100vh;
+}
+
+/* リンクの色：水色 */
+#md-preview-container a {
+    color: #00aaff !important;
+    text-decoration: none;
+}
+
+#md-preview-container a:hover {
+    text-decoration: underline;
+}
+
+/* 見出しの設定 */
+#md-preview-container h1,
+#md-preview-container h2,
+#md-preview-container h3 {
+    color: #1a1a1a;
+    font-weight: 700;
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3em;
+}
+
+/* プレビュー内のコードブロック */
+#md-preview-container pre {
+    background-color: #f6f8fa !important;
+    border: 1px solid #dfe1e4;
+    padding: 16px !important;
+    border-radius: 6px;
+    color: #24292e !important;
+}
+
+#md-preview-container code {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: rgba(27, 31, 35, 0.05);
+    color: #e01e5a;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+/* --- 3. 切り替えボタン --- */
+#md-toggle-button {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 10000;
+    padding: 6px 14px;
+    background-color: #ffffff;
+    color: #555555;
+    border: 1px solid #d1d5da;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#md-toggle-button:hover {
+    background-color: #f3f4f6;
+}
