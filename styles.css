@@ -11,18 +11,26 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", YuGothic, "Meiryo", sans-serif;
 }
 
-/* Chromeが生成するpreタグ（ソースコード画面）の調整 */
-pre {
+/* Chromeが生成するpreタグ（元のソースコード領域）と、新設したエディタ領域の調整 */
+pre, #md-editor {
   white-space: pre-wrap;
-  /* 折り返しを有効に */
   word-wrap: break-word;
   padding: 50px !important;
   margin: 0 !important;
   color: #000000 !important;
-  /* 確実に黒くする */
   font-family: "Consolas", "Monaco", monospace;
-  /* コードは等幅フォント */
   background-color: #ffffff !important;
+}
+
+/* エディタ専用の追加スタイル */
+#md-editor {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 14px;
 }
 
 /* --- 2. プレビュー画面のデザイン --- */
@@ -96,10 +104,9 @@ pre {
   background-color: #f3f4f6;
 }
 
-#md-pdf-button {
+#md-pdf-button, #md-download-button {
   position: fixed;
   top: 15px;
-  right: 120px;
   z-index: 10000;
   padding: 6px 14px;
   background-color: #ffffff;
@@ -112,7 +119,15 @@ pre {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-#md-pdf-button:hover {
+#md-pdf-button {
+  right: 120px;
+}
+
+#md-download-button {
+  right: 190px;
+}
+
+#md-pdf-button:hover, #md-download-button:hover {
   background-color: #f3f4f6;
 }
 
@@ -124,10 +139,11 @@ pre {
 
 /* --- 4. 印刷用スタイル --- */
 @media print {
-  /* 不要なボタンを印刷プレビューから隠す */
+  /* 不要なUIを印刷プレビューから隠す */
   #md-toggle-button,
   #md-pdf-button,
-  button {
+  #md-download-button,
+  #md-editor {
     display: none !important;
   }
 
@@ -138,6 +154,7 @@ pre {
   }
 
   #md-preview-container {
+    display: block !important;
     max-width: none !important;
     margin: 0 !important;
     padding: 0 !important;
