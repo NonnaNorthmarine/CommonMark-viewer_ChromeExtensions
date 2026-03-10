@@ -7,6 +7,10 @@ const rawContent = document.querySelector("pre");
 if (rawContent) {
   const markdownText = rawContent.innerText;
 
+  // --- ダークモード対応 ---
+  // デフォルトでdark-modeをONにする
+  document.body.classList.add("dark-mode");
+
   // 1. プレビュー用コンテナの作成
   const previewContainer = document.createElement("div");
   previewContainer.id = "md-preview-container";
@@ -41,6 +45,12 @@ if (rawContent) {
   downloadBtn.id = "md-download-button";
   downloadBtn.innerText = "Download";
   document.body.appendChild(downloadBtn);
+
+  // 2.7 テーマ切り替え(太陽/月)ボタンの作成
+  const themeBtn = document.createElement("button");
+  themeBtn.id = "md-theme-toggle";
+  themeBtn.innerText = "🌙"; // 初期はダークモードなので月マーク
+  document.body.appendChild(themeBtn);
 
     // PDFボタンのイベント
     pdfBtn.addEventListener("click", () => {
@@ -115,5 +125,12 @@ if (rawContent) {
       editorArea.style.display = "none";
       toggleBtn.innerText = "Code";
     }
+  });
+
+  // 4. テーマ切り替えイベント
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.contains("dark-mode");
+    themeBtn.innerText = isDark ? "🌙" : "☀️";
   });
 }

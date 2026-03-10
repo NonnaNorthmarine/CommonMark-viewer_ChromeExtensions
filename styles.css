@@ -5,10 +5,10 @@
 body {
   background-color: #ffffff !important;
   color: #000000 !important;
-  /* Code Viewの文字を強制的に黒に */
   margin: 0;
   padding: 0;
   font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Chromeが生成するpreタグ（元のソースコード領域）と、新設したエディタ領域の調整 */
@@ -20,6 +20,7 @@ pre, #md-editor {
   color: #000000 !important;
   font-family: "Noto Sans JP", "Consolas", "Monaco", monospace;
   background-color: #ffffff !important;
+  transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* エディタ専用の追加スタイル */
@@ -42,14 +43,15 @@ pre, #md-editor {
   color: #333333;
   line-height: 1.7;
   font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  /* プレビュー時も背景を白く保つ */
   min-height: 100vh;
+  transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* リンクの色：水色 */
 #md-preview-container a {
   color: #00aaff !important;
   text-decoration: none;
+  transition: color 0.8s ease;
 }
 
 #md-preview-container a:hover {
@@ -64,6 +66,7 @@ pre, #md-editor {
   font-weight: 700;
   border-bottom: 1px solid #eaecef;
   padding-bottom: 0.3em;
+  transition: color 0.8s ease, border-color 0.8s ease;
 }
 
 /* プレビュー内のコードブロック */
@@ -73,6 +76,7 @@ pre, #md-editor {
   padding: 16px !important;
   border-radius: 6px;
   color: #24292e !important;
+  transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease;
 }
 
 #md-preview-container code {
@@ -81,6 +85,7 @@ pre, #md-editor {
   color: #e01e5a;
   padding: 0.2em 0.4em;
   border-radius: 3px;
+  transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* --- 3. 切り替えボタン --- */
@@ -104,7 +109,7 @@ pre, #md-editor {
   background-color: #f3f4f6;
 }
 
-#md-pdf-button, #md-download-button {
+#md-pdf-button, #md-download-button, #md-theme-toggle {
   position: fixed;
   top: 15px;
   z-index: 10000;
@@ -117,6 +122,13 @@ pre, #md-editor {
   font-family: "Noto Sans", sans-serif;
   font-size: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.8s ease, color 0.8s ease, border-color 0.8s ease;
+}
+
+#md-theme-toggle {
+  left: 15px;
+  font-size: 16px;
+  padding: 4px 10px;
 }
 
 #md-pdf-button {
@@ -127,7 +139,7 @@ pre, #md-editor {
   right: 190px;
 }
 
-#md-pdf-button:hover, #md-download-button:hover {
+#md-toggle-button:hover, #md-pdf-button:hover, #md-download-button:hover, #md-theme-toggle:hover {
   background-color: #f3f4f6;
 }
 
@@ -137,28 +149,114 @@ pre, #md-editor {
   cursor: not-allowed;
 }
 
-/* --- 4. 印刷用スタイル --- */
+/* --- 4. ダークモード (.dark-mode) スタイル --- */
+body.dark-mode {
+  background-color: #16161e !important;
+  color: #c0caf5 !important;
+}
+
+body.dark-mode pre, body.dark-mode #md-editor {
+  background-color: #16161e !important;
+  color: #c0caf5 !important;
+}
+
+body.dark-mode #md-preview-container {
+  background-color: #16161e !important;
+  color: #a9b1d6;
+}
+
+body.dark-mode #md-preview-container h1,
+body.dark-mode #md-preview-container h2,
+body.dark-mode #md-preview-container h3 {
+  color: #c0caf5;
+  border-bottom-color: #414868;
+}
+
+body.dark-mode #md-preview-container a {
+  color: #7aa2f7 !important;
+}
+
+body.dark-mode #md-preview-container pre {
+  background-color: #1a1b26 !important;
+  border-color: #414868;
+  color: #a9b1d6 !important;
+}
+
+body.dark-mode #md-preview-container code {
+  background-color: rgba(122, 162, 247, 0.15);
+  color: #bb9af7;
+}
+
+body.dark-mode #md-toggle-button,
+body.dark-mode #md-pdf-button,
+body.dark-mode #md-download-button,
+body.dark-mode #md-theme-toggle {
+  background-color: #1a1b26;
+  color: #a9b1d6;
+  border-color: #414868;
+}
+
+body.dark-mode #md-toggle-button:hover,
+body.dark-mode #md-pdf-button:hover,
+body.dark-mode #md-download-button:hover,
+body.dark-mode #md-theme-toggle:hover {
+  background-color: #414868;
+}
+
+body.dark-mode #md-pdf-button:disabled {
+  background-color: #292e42;
+  color: #565f89;
+}
+
+/* --- 5. 印刷用スタイル --- */
 @media print {
   /* 不要なUIを印刷プレビューから隠す */
   #md-toggle-button,
   #md-pdf-button,
   #md-download-button,
+  #md-theme-toggle,
   #md-editor {
     display: none !important;
   }
 
-  body {
+  /* 印刷時は強制的にライトモードの色にする */
+  body, body.dark-mode {
     margin: 0 !important;
     padding: 0 !important;
     background-color: #ffffff !important;
+    color: #000000 !important;
   }
 
-  #md-preview-container {
+  body.dark-mode #md-preview-container, #md-preview-container {
     display: block !important;
     max-width: none !important;
     margin: 0 !important;
     padding: 0 !important;
     box-shadow: none !important;
     border: none !important;
+    background-color: #ffffff !important;
+    color: #333333 !important;
+  }
+
+  body.dark-mode #md-preview-container h1,
+  body.dark-mode #md-preview-container h2,
+  body.dark-mode #md-preview-container h3 {
+    color: #1a1a1a !important;
+    border-bottom-color: #eaecef !important;
+  }
+
+  body.dark-mode #md-preview-container a {
+    color: #00aaff !important;
+  }
+
+  body.dark-mode #md-preview-container pre {
+    background-color: #f6f8fa !important;
+    border-color: #dfe1e4 !important;
+    color: #24292e !important;
+  }
+
+  body.dark-mode #md-preview-container code {
+    background-color: rgba(27, 31, 35, 0.05) !important;
+    color: #e01e5a !important;
   }
 }
