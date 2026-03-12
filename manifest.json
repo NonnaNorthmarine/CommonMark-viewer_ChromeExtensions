@@ -1,12 +1,12 @@
 {
   "manifest_version": 3,
   "name": "CommonMark Viewer",
-  "version": "3.4",
+  "version": "3.5",
   "description": "MarkdownファイルをCommonMark標準で表示し、プレビューとエディターを切り替えます。",
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "content_scripts": [
     {
