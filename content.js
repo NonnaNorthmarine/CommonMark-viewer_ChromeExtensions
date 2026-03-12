@@ -1,5 +1,6 @@
 // ライブラリの初期化 (CommonMark準拠モード)
-const md = window.markdownit("commonmark");
+// breaks: true を指定して、エンターによる単一改行をプレビューに反映させる
+const md = window.markdownit("commonmark", { breaks: true });
 
 // 元のテキスト（ChromeがMDを開いた時に生成するpreタグ）を取得
 const rawContent = document.querySelector("pre");
