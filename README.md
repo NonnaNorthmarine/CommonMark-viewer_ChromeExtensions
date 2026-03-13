@@ -1,4 +1,4 @@
-# CommonMark-viewer_ChromeExtensions
+# MarkdownViewer_ChromeExtensions
 .mdや.markdownファイルをブラウザで開いた時に、プレビューとコードエディターを表示する拡張機能です。編集やPDFへの変換もできます。
 
 GoogleGeminiを使用して作成しました。
