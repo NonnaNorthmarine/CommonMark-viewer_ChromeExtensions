@@ -1,6 +1,7 @@
 // ライブラリの初期化 (CommonMark準拠モード)
-// breaks: true を指定して、エンターによる単一改行をプレビューに反映させる
-const md = window.markdownit("commonmark", { breaks: true });
+// breaks: true を指定して単一改行をプレビューに反映させ、
+// enable(["strikethrough", "table"]) で ~~取り消し線~~ とテーブルを有効にする
+const md = window.markdownit("commonmark", { breaks: true }).enable(["strikethrough", "table"]);
 
 // 元のテキスト（ChromeがMDを開いた時に生成するpreタグ）を取得
 const rawContent = document.querySelector("pre");
